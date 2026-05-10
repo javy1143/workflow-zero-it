@@ -31,6 +31,33 @@
     });
   });
 
+  document.querySelectorAll(".service-card").forEach(function (card) {
+    var heading = card.querySelector("h2, h3");
+    if (!heading || heading.textContent.trim() !== "IT Operations" || card.tagName.toLowerCase() === "a") {
+      return;
+    }
+
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.style.cursor = "pointer";
+
+    function openItOperations(event) {
+      if (event.target.closest("a, button")) {
+        return;
+      }
+
+      window.location.href = "it-operations.html";
+    }
+
+    card.addEventListener("click", openItOperations);
+    card.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.href = "it-operations.html";
+      }
+    });
+  });
+
   if (toggle) {
     toggle.addEventListener("click", function () {
       var isOpen = body.classList.toggle("menu-open");
